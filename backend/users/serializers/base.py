@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from backend.users import models
 from backend.utils import global_vars
@@ -13,3 +14,13 @@ class UserSerializer(serializers.ModelSerializer):
         model = models.User
         fields = ('id', 'username', 'first_name',
                   'last_name', 'profile_pic', 'date_joined')
+
+
+class ObtainTokenSerializer(TokenObtainPairSerializer):
+
+    @classmethod
+    def get_token(cls, user):
+        token = super(ObtainTokenSerializer, cls).get_token(user)
+
+        token['full_name'] = user.full_name
+        return token
