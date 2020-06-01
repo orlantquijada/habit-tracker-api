@@ -10,9 +10,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=global_vars.USERNAME_MAXLENGTH, unique=True)
 
     first_name = models.CharField(
-        max_length=global_vars.NAME_MAXLENGTH, blank=True, null=True)
+        'First Name', max_length=global_vars.NAME_MAXLENGTH, blank=True, null=True)
     last_name = models.CharField(
-        max_length=global_vars.NAME_MAXLENGTH, blank=True, null=True)
+        'Last Name', max_length=global_vars.NAME_MAXLENGTH, blank=True, null=True)
 
     profile_pic = models.ImageField(
         'Profile Picture', upload_to='users/profile-pics/', blank=True, null=True)
