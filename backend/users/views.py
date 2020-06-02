@@ -13,6 +13,12 @@ class UserViewSet(mixins.CreateModelMixin,
     queryset = models.User.objects.all()
     serializer_class = serializers.base.UserSerializer
 
+    def get_permissions(self):
+        if self.action == 'create':
+            return [permissions.AllowAny()]
+
+        return super().get_permissions()
+
 
 class ObtainTokenView(TokenObtainPairView):
     serializer_class = serializers.base.ObtainTokenSerializer
