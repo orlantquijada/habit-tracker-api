@@ -1,3 +1,4 @@
+""" Classes inside this module are assumed to be used for request bodies only. """
 from rest_framework import serializers
 
 
@@ -5,9 +6,9 @@ class ChangePasswordSerializer(serializers.Serializer):
 
     user_id = serializers.IntegerField()
 
-    old_password = serializers.CharField(write_only=True)
-    new_password = serializers.CharField(write_only=True)
-    confirm_password = serializers.CharField(write_only=True)
+    old_password = serializers.CharField()
+    new_password = serializers.CharField()
+    confirm_password = serializers.CharField()
 
     def validate(self, attrs):
         old_password = attrs.get('old_password')
