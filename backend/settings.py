@@ -43,6 +43,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 INSTALLED_APPS = [
     # project apps
     'backend.users',
+    'backend.habits',
 
     # third party apps
     'rest_framework',
