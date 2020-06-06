@@ -1,6 +1,7 @@
-from rest_framework import mixins, viewsets
+from rest_framework import mixins
 
 from backend.habits import serializers, models
+from backend.utils import viewsets
 
 
 class TagViewSet(mixins.CreateModelMixin,
@@ -8,11 +9,12 @@ class TagViewSet(mixins.CreateModelMixin,
                  mixins.ListModelMixin,
                  mixins.RetrieveModelMixin,
                  mixins.UpdateModelMixin,
-                 viewsets.GenericViewSet):
+                 viewsets.ExtendedGenericViewSet):
 
     #pylint: disable=no-member
     queryset = models.Tag.objects
     serializer_class = serializers.base.TagSerializer
+    extended_serializer = serializers.extended.ExtendedTagSerializer
 
     def get_queryset(self):
 
