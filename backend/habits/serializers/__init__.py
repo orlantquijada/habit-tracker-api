@@ -1,1 +1,1 @@
-from . import base, extended
+from . import base, extended, query
