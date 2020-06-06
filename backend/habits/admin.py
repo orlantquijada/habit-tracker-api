@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from backend.habits import models
+
+
+admin.site.register(models.Tag)
