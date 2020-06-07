@@ -11,7 +11,6 @@ class ExtendedGenericViewSet(viewsets.GenericViewSet):
     extended_serializer_class = None
 
     def get_serializer_class(self):
-
         assert self.extended_serializer_class is not None, (
             f'{self.__class__.__name__} should include a `extended_serializer_class` attribute.')
 

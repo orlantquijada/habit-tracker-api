@@ -17,7 +17,6 @@ class TagViewSet(mixins.CreateModelMixin,
     extended_serializer_class = serializers.extended.ExtendedTagSerializer
 
     def get_queryset(self):
-
         queryset = self.queryset
 
         serializer = serializers.query.TagQuerySerializer(
