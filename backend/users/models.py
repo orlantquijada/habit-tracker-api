@@ -6,6 +6,7 @@ from backend.users.managers import CustomUserManager
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+
     username = models.CharField(
         max_length=global_vars.USERNAME_MAXLENGTH, unique=True)
 

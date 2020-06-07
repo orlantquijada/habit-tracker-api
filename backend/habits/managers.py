@@ -9,5 +9,4 @@ class TagManager(models.Manager):
 
         Expects a user_id for better performance.
         """
-
         return self.filter(user_id=user_id)

@@ -48,5 +48,6 @@ class UserViewSet(mixins.CreateModelMixin,
 
 
 class ObtainTokenView(TokenObtainPairView):
+
     serializer_class = serializers.base.ObtainTokenSerializer
     permission_classes = (permissions.AllowAny, )
