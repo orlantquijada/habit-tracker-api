@@ -28,6 +28,6 @@ class TagViewSet(mixins.CreateModelMixin,
 
         user_id = serializer.validated_data.get('user_id')
         if user_id:
-            queryset.filter(user_id=user_id)
+            queryset = queryset.user(user_id)
 
         return queryset.all()
