@@ -13,4 +13,5 @@ class Tag(models.Model):
     objects = managers.TagManager()
 
     def __str__(self):
-        return f'{self.user} / {self.label}'
+        # pylint: disable=no-member
+        return f'{self.id} / {self.user.full_name} / {self.label}'
