@@ -14,7 +14,7 @@ class TagViewSet(mixins.CreateModelMixin,
     #pylint: disable=no-member
     queryset = models.Tag.objects
     serializer_class = serializers.base.TagSerializer
-    extended_serializer = serializers.extended.ExtendedTagSerializer
+    extended_serializer_class = serializers.extended.ExtendedTagSerializer
 
     def get_queryset(self):
 

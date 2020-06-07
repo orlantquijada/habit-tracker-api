@@ -1,16 +1,28 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, serializers
+
+
+class ExtendedQuerySerializer(serializers.Serializer):
+
+    extended_data = serializers.BooleanField(required=False)
 
 
 class ExtendedGenericViewSet(viewsets.GenericViewSet):
 
-    extended_serializer = None
+    extended_serializer_class = None
 
     def get_serializer_class(self):
 
-        extended = self.request.query_params.get('extended_data')
-        extended_serializer = self.extended_serializer
+        assert self.extended_serializer_class is not None, (
+            f'{self.__class__.__name__} should include a `extended_serializer_class` attribute.')
 
-        if extended and extended_serializer is not None:
-            return extended_serializer
+        query_serializer = ExtendedQuerySerializer(
+            data=self.request.query_params)
+
+        if not query_serializer.is_valid():
+            return super().get_serializer_class()
+
+        extended = query_serializer.validated_data.get('extended_data')
+        if extended:
+            return self.extended_serializer_class
 
         return super().get_serializer_class()
