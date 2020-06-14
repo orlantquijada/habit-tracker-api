@@ -2,10 +2,11 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 
 from backend.utils import global_vars
+from backend.utils.mixins import models as mixin_models
 from backend.users.managers import CustomUserManager
 
 
-class User(AbstractBaseUser, PermissionsMixin):
+class User(AbstractBaseUser, PermissionsMixin, mixin_models.TimeStampFieldsMixin):
 
     username = models.CharField(
         max_length=global_vars.USERNAME_MAXLENGTH, unique=True)
@@ -17,8 +18,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     profile_pic = models.ImageField(
         'Profile Picture', upload_to='users/profile-pics/', blank=True, null=True)
-
-    date_joined = models.DateTimeField('Date Joined', auto_now_add=True)
 
     is_staff = models.BooleanField(default=False)
 
