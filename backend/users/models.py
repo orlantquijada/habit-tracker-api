@@ -26,6 +26,9 @@ class User(AbstractBaseUser, PermissionsMixin, mixin_models.TimeStampFieldsMixin
 
     objects = CustomUserManager()
 
+    class Meta:
+        indexes = (models.Index(fields=('username',)),)
+
     def __str__(self):
         # pylint: disable=no-member
         return f'{self.id} / {self.username} / {self.full_name}'

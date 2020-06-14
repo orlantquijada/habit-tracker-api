@@ -14,6 +14,10 @@ class Tag(models.Model):
 
     objects = managers.TagManager()
 
+    class Meta:
+        constraints = (models.UniqueConstraint(
+            fields=('label', 'user'), name='unique_tags'),)
+
     def __str__(self):
         # pylint: disable=no-member
         return f'{self.id} / {self.user.full_name} / {self.label}'
