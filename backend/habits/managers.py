@@ -10,3 +10,14 @@ class TagManager(models.Manager):
         Expects a user_id for better performance.
         """
         return self.filter(user_id=user_id)
+
+
+class HabitManager(models.Manager):
+
+    def user(self, user_id: int):
+        """
+        Filters habits by user.
+
+        Expects a user_id for better performance.
+        """
+        return self.filter(user_id=user_id)
