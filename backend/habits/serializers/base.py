@@ -17,7 +17,7 @@ class TagSerializer(serializers.ModelSerializer):
 
 class HabitSerializer(serializers.ModelSerializer):
 
-    alloted_time = serializers.TimeField(
+    allotted_time = serializers.TimeField(
         format=global_vars.TIME_FORMAT, input_formats=(global_vars.TIME_FORMAT,))
 
     datetime_joined = serializers.DateTimeField(source='created_at', read_only=True, input_formats=(
