@@ -32,7 +32,6 @@ class UserViewSet(mixins.CreateModelMixin,
         user_id = serializer.validated_data.get('user_id')
         try:
             user = models.User.objects.get(pk=user_id)
-        # pylint: disable=no-member
         except models.User.DoesNotExist:
             return Response(data={'error': 'User does not exist.'}, status=status.HTTP_404_NOT_FOUND)
 

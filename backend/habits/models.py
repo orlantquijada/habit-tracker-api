@@ -19,7 +19,6 @@ class Tag(models.Model):
             fields=('label', 'user'), name='unique_tags'),)
 
     def __str__(self):
-        # pylint: disable=no-member
         return f'{self.id} / {self.user.full_name} / {self.label}'
 
 
@@ -37,5 +36,4 @@ class Habit(mixin_models.TimeStampFieldsMixin):
             fields=('title', 'allotted_time', 'user'), name='unique_habits'),)
 
     def __str__(self):
-        # pylint: disable=no-member
         return f'{self.id} / {self.user.full_name} / {self.title}'
