@@ -14,3 +14,6 @@ class TimeStampFieldsMixinSerializer(serializers.Serializer):
         global_vars.DATETIME_FORMAT,), format=global_vars.DATETIME_FORMAT)
     updated_at = serializers.DateTimeField(read_only=True, input_formats=(
         global_vars.DATETIME_FORMAT,), format=global_vars.DATETIME_FORMAT)
+
+    class Meta:
+        fields = ('created_at', 'updated_at')
