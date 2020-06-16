@@ -39,7 +39,7 @@ class HabitViewSet(mixins.CreateModelMixin,
                    viewsets.ExtendedGenericViewSet):
 
     queryset = models.Habit.objects
-    serializer_class = serializers.base.TagSerializer
+    serializer_class = serializers.base.HabitSerializer
     extended_serializer_class = serializers.extended.ExtendedHabitSerializer
 
     def get_queryset(self):
