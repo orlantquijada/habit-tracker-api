@@ -13,7 +13,7 @@ class ExtendedTagSerializer(base_habit_serializers.TagSerializer):
 
 class ExtendedHabitSerializer(base_habit_serializers.TagSerializer):
 
-    user = base_habit_serializers.users_models(read_only=True)
+    user = base_user_serializers.UserSerializer(read_only=True)
 
     class Meta:
         model = base_habit_serializers.HabitSerializer.Meta.model
