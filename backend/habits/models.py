@@ -50,6 +50,8 @@ class Entry(models.Model):
 
     habit = models.ForeignKey(to=Habit, on_delete=models.CASCADE)
 
+    objects = managers.EntryManager()
+
     class Meta:
         verbose_name_plural = 'Entries'
 
