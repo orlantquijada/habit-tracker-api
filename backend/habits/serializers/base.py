@@ -29,3 +29,28 @@ class HabitSerializer(serializers.ModelSerializer, mixin_serializers.TimeStampFi
 
         model = habits_models.Habit
         fields = ('id', 'title', 'allotted_time', 'user_id') + inherited_fields
+
+
+class EntrySerializer(serializers.ModelSerializer):
+
+    datetime_started = serializers.DateTimeField(
+        format=global_vars.DATETIME_FORMAT, input_formats=(global_vars.DATETIME_FORMAT,))
+    datetime_ended = serializers.DateTimeField(
+        format=global_vars.DATETIME_FORMAT, input_formats=(global_vars.DATETIME_FORMAT,))
+
+    habit_id = serializers.PrimaryKeyRelatedField(
+        queryset=habits_models.Entry.objects.all(), source='habit')
+
+    class Meta:
+        model = habits_models.Entry
+        fields = ('id', 'title', 'datetime_started',
+                  'datetime_ended', 'habit_id')
+
+    def validate(self, attrs):
+        datetime_started = attrs.get('datetime_started')
+        datetime_ended = attrs.get('datetime_ended')
+
+        if datetime_started <= datetime_ended:
+            return serializers.ValidationError('Datetime Started must be before Datetime Ended!')
+
+        return attrs
