@@ -22,6 +22,8 @@ class EntryQuerySerializer(serializers.Serializer):
     date_ended = serializers.DateField(
         required=False, format=global_vars.DATE_FORMAT, input_formats=(global_vars.DATE_FORMAT, ))
 
+    # convenience query param
+    # should not be used with `date_started` and `date_ended`
     today = serializers.BooleanField(default=False)
 
     def validate(self, attrs):
