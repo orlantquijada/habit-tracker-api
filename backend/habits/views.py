@@ -79,10 +79,8 @@ class EntryViewSet(mixins.CreateModelMixin,
         if habit_id := serializer.validated_data.get('habit_id'):
             queryset = queryset.habit(habit_id)
 
-        if date_started := serializer.validated_data.get('date_started'):
-            queryset = queryset.date_started(date_started)
-
-        if date_ended := serializer.validated_data.get('date_ended'):
-            queryset = queryset.date_ended(date_ended)
+        if date := serializer.validated_data.get('date'):
+            # using date_started as a basis of filtering by date
+            queryset = queryset.date_started(date)
 
         return queryset.all()
