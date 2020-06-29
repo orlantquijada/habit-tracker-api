@@ -18,3 +18,13 @@ class ExtendedHabitSerializer(base_habit_serializers.TagSerializer):
     class Meta:
         model = base_habit_serializers.HabitSerializer.Meta.model
         fields = base_habit_serializers.HabitSerializer.Meta.fields + ('user',)
+
+
+class ExtendedEntrySerializer(base_habit_serializers.EntrySerializer):
+
+    habit = ExtendedHabitSerializer(read_only=True)
+
+    class Meta:
+        model = base_habit_serializers.HabitSerializer.Meta.model
+        fields = base_habit_serializers.HabitSerializer.Meta.fields + \
+            ('habits',)
