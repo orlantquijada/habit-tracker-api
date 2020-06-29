@@ -24,8 +24,7 @@ class TagViewSet(mixins.CreateModelMixin,
         if not serializer.is_valid():
             return queryset.all()
 
-        user_id = serializer.validated_data.get('user_id')
-        if user_id:
+        if user_id := serializer.validated_data.get('user_id'):
             queryset = queryset.user(user_id)
 
         return queryset.all()
@@ -51,8 +50,7 @@ class HabitViewSet(mixins.CreateModelMixin,
         if not serializer.is_valid():
             return queryset.all()
 
-        user_id = serializer.validated_data.get('user_id')
-        if user_id:
+        if user_id := serializer.validated_data.get('user_id'):
             queryset = queryset.user(user_id)
 
         return queryset.all()
@@ -77,12 +75,10 @@ class EntryViewSet(mixins.CreateModelMixin,
         if not serializer.is_valid():
             return queryset.all()
 
-        habit_id = serializer.validated_data.get('habit_id')
-        if habit_id:
+        if habit_id := serializer.validated_data.get('habit_id'):
             queryset = queryset.habit(habit_id)
 
-        date_started = serializer.validated_data.get('date_started')
-        if date_started:
+        if date_started := serializer.validated_data.get('date_started'):
             queryset = queryset.date_started(date_started)
 
         if date_ended := serializer.validated_data.get('date_ended'):
