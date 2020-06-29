@@ -26,13 +26,3 @@ class EntryQuerySerializer(serializers.Serializer):
     # should not be used with `date_started` and `date_ended`
     today = serializers.BooleanField(default=False)
 
-    def validate(self, attrs):
-        today = attrs.get('today')
-
-        date_started = attrs.get('date_started')
-        date_ended = attrs.get('date_ended')
-
-        if today and (date_started or date_ended):
-            return serializers.ValidationError('Do not use today` query param with `date_started` or `date_ended`.')
-
-        return attrs
