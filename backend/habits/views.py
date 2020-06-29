@@ -56,3 +56,36 @@ class HabitViewSet(mixins.CreateModelMixin,
             queryset = queryset.user(user_id)
 
         return queryset.all()
+
+
+class EntryViewSet(mixins.CreateModelMixin,
+                   mixins.DestroyModelMixin,
+                   mixins.ListModelMixin,
+                   mixins.RetrieveModelMixin,
+                   mixins.UpdateModelMixin,
+                   viewsets.ExtendedGenericViewSet):
+
+    queryset = models.Entry.objects
+    serializer_class = serializers.base.EntrySerializer
+    extended_serializer_class = serializers.extended.ExtendedEntrySerializer
+
+    def get_queryset(self):
+        queryset = self.queryset
+
+        serializer = serializers.query(data=self.request.query_params)
+
+        if not serializer.is_valid():
+            return queryset.all()
+
+        habit_id = serializer.validated_data.get('habit_id')
+        if habit_id:
+            queryset = queryset.habit(habit_id)
+
+        date_started = serializer.validated_data.get('date_started')
+        if date_started:
+            queryset = queryset.date_started(date_started)
+
+        if date_ended := serializer.validated_data.get('date_ended'):
+            queryset = queryset.date_ended(date_ended)
+
+        return queryset.all()
