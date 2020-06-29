@@ -9,5 +9,6 @@ from backend.habits import views
 ROUTER = routers.DefaultRouter(trailing_slash=False)
 ROUTER.register('tags', views.TagViewSet)
 ROUTER.register('habits', views.HabitViewSet)
+ROUTER.register('entries', views.EntryViewSet)
 
 urlpatterns = path('', include(ROUTER.urls))
