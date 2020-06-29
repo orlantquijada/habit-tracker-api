@@ -4,11 +4,11 @@ from rest_framework import serializers
 
 class ChangePasswordSerializer(serializers.Serializer):
 
-    user_id = serializers.IntegerField()
+    user_id = serializers.IntegerField(required=True)
 
-    old_password = serializers.CharField()
-    new_password = serializers.CharField()
-    confirm_password = serializers.CharField()
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+    confirm_password = serializers.CharField(required=True)
 
     def validate(self, attrs):
         old_password = attrs.get('old_password')

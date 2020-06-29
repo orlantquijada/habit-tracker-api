@@ -50,7 +50,8 @@ class EntrySerializer(serializers.ModelSerializer):
         datetime_started = attrs.get('datetime_started')
         datetime_ended = attrs.get('datetime_ended')
 
-        if datetime_started >= datetime_ended:
+        if (datetime_started and datetime_ended) and \
+           (datetime_started >= datetime_ended):
             raise serializers.ValidationError(
                 'Datetime Started must be before Datetime Ended!')
 
