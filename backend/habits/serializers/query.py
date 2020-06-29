@@ -9,3 +9,7 @@ class TagQuerySerializer(serializers.Serializer):
 class HabitQuerySerializer(serializers.Serializer):
 
     user_id = serializers.IntegerField(required=False)
+
+
+class EntryQuerySerializer(serializers.Serializer):
+    pass
