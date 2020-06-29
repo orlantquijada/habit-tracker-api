@@ -24,8 +24,7 @@ class TagViewSet(mixins.CreateModelMixin,
         if not serializer.is_valid():
             return queryset.all()
 
-        user_id = serializer.validated_data.get('user_id')
-        if user_id:
+        if user_id := serializer.validated_data.get('user_id'):
             queryset = queryset.user(user_id)
 
         return queryset.all()
@@ -51,8 +50,37 @@ class HabitViewSet(mixins.CreateModelMixin,
         if not serializer.is_valid():
             return queryset.all()
 
-        user_id = serializer.validated_data.get('user_id')
-        if user_id:
+        if user_id := serializer.validated_data.get('user_id'):
             queryset = queryset.user(user_id)
+
+        return queryset.all()
+
+
+class EntryViewSet(mixins.CreateModelMixin,
+                   mixins.DestroyModelMixin,
+                   mixins.ListModelMixin,
+                   mixins.RetrieveModelMixin,
+                   mixins.UpdateModelMixin,
+                   viewsets.ExtendedGenericViewSet):
+
+    queryset = models.Entry.objects
+    serializer_class = serializers.base.EntrySerializer
+    extended_serializer_class = serializers.extended.ExtendedEntrySerializer
+
+    def get_queryset(self):
+        queryset = self.queryset
+
+        serializer = serializers.query.EntryQuerySerializer(
+            data=self.request.query_params)
+
+        if not serializer.is_valid():
+            return queryset.all()
+
+        if habit_id := serializer.validated_data.get('habit_id'):
+            queryset = queryset.habit(habit_id)
+
+        if date := serializer.validated_data.get('date'):
+            # using date_started as a basis of filtering by date
+            queryset = queryset.date_started(date)
 
         return queryset.all()
