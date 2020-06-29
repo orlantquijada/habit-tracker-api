@@ -70,7 +70,8 @@ class EntryViewSet(mixins.CreateModelMixin,
     def get_queryset(self):
         queryset = self.queryset
 
-        serializer = serializers.query(data=self.request.query_params)
+        serializer = serializers.query.EntryQuerySerializer(
+            data=self.request.query_params)
 
         if not serializer.is_valid():
             return queryset.all()

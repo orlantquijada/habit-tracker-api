@@ -39,7 +39,7 @@ class EntrySerializer(serializers.ModelSerializer):
         format=global_vars.DATETIME_FORMAT, input_formats=(global_vars.DATETIME_FORMAT,))
 
     habit_id = serializers.PrimaryKeyRelatedField(
-        queryset=habits_models.Entry.objects.all(), source='habit')
+        queryset=habits_models.Habit.objects.all(), source='habit')
 
     class Meta:
         model = habits_models.Entry
