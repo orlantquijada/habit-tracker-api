@@ -20,8 +20,7 @@ class ExtendedGenericViewSet(viewsets.GenericViewSet):
         if not query_serializer.is_valid():
             return super().get_serializer_class()
 
-        extended = query_serializer.validated_data.get('extended_data')
-        if extended:
+        if extended := query_serializer.validated_data.get('extended_data'):
             return self.extended_serializer_class
 
         return super().get_serializer_class()
