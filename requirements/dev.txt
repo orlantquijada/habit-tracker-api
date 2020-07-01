@@ -1,0 +1,7 @@
+-r base.txt
+
+autopep8==1.5.3
+mypy==0.782
+jedi==0.17.1
+
+
