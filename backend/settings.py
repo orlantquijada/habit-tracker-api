@@ -35,7 +35,7 @@ SECRET_KEY = env.str('SECRET_KEY')
 # False if not in os.environ
 DEBUG = env.bool('DEBUG')
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '0.0.0.0']
 
 
 # Application definition
@@ -92,11 +92,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': env.str('DATABASE_NAME'),
         'USER': env.str('DATABASE_USER'),
         'PASSWORD': env.str('DATABASE_USER_PASSWORD'),
-        'HOST': 'localhost',
+        'HOST': env.str('DATABASE_HOST'),
         'PORT': ''
     }
 }
