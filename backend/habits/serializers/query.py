@@ -17,8 +17,9 @@ class EntryQuerySerializer(serializers.Serializer):
 
     habit_id = serializers.IntegerField(required=False)
 
-    date = serializers.DateField(
-        required=False, format=global_vars.DATE_FORMAT, input_formats=(global_vars.DATE_FORMAT, ))
+    date = serializers.DateField(required=False,
+                                 format=global_vars.DATE_FORMAT,
+                                 input_formats=(global_vars.DATE_FORMAT, ))
 
     # convenience query param
     # should not be used with `date_started` and `date_ended`

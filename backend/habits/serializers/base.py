@@ -16,7 +16,8 @@ class TagSerializer(serializers.ModelSerializer):
         fields = ('id', 'label', 'user_id')
 
 
-class HabitSerializer(serializers.ModelSerializer, mixin_serializers.TimeStampFieldsMixinSerializer):
+class HabitSerializer(serializers.ModelSerializer,
+                      mixin_serializers.TimeStampFieldsMixinSerializer):
 
     allotted_time = serializers.TimeField(
         format=global_vars.TIME_FORMAT, input_formats=(global_vars.TIME_FORMAT,))
