@@ -14,8 +14,7 @@ urlpatterns = path('', include(ROUTER.urls))
 AUTH_URLS = path('token/', include(
     [
         path('obtain', views.ObtainTokenView.as_view()),
-        path('refresh',
-             jwt_views.TokenRefreshView.as_view()),
+        path('refresh', jwt_views.TokenRefreshView.as_view()),
         path('verify', jwt_views.token_verify)
 
     ]
