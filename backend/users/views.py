@@ -27,17 +27,20 @@ class UserViewSet(mixins.CreateModelMixin,
             data=request.data)
 
         if not serializer.is_valid():
-            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(data=serializer.errors,
+                            status=status.HTTP_400_BAD_REQUEST)
 
         user_id = serializer.validated_data.get('user_id')
         try:
             user = models.User.objects.get(pk=user_id)
         except models.User.DoesNotExist:
-            return Response(data={'error': 'User does not exist.'}, status=status.HTTP_404_NOT_FOUND)
+            return Response(data={'error': 'User does not exist.'},
+                            status=status.HTTP_404_NOT_FOUND)
 
         old_password = serializer.validated_data.get('old_password')
         if not user.check_password(old_password):
-            return Response(data={'error': 'Old Password is incorrect.'}, status=status.HTTP_401_UNAUTHORIZED)
+            return Response(data={'error': 'Old Password is incorrect.'},
+                            status=status.HTTP_401_UNAUTHORIZED)
 
         new_password = serializer.validated_data.get('new_password')
         user.set_password(new_password)

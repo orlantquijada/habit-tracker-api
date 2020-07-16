@@ -7,10 +7,16 @@ from backend.utils import global_vars
 
 class UserSerializer(serializers.ModelSerializer):
 
-    datetime_joined = serializers.DateTimeField(source='created_at', read_only=True, input_formats=(
-        global_vars.DATETIME_FORMAT,), format=global_vars.DATETIME_FORMAT)
-    datetime_updated = serializers.DateTimeField(source='updated_at', read_only=True, input_formats=(
-        global_vars.DATETIME_FORMAT,), format=global_vars.DATETIME_FORMAT)
+    datetime_joined = serializers.DateTimeField(source='created_at',
+                                                read_only=True,
+                                                input_formats=(
+                                                    global_vars.DATETIME_FORMAT,),
+                                                format=global_vars.DATETIME_FORMAT)
+    datetime_updated = serializers.DateTimeField(source='updated_at',
+                                                 read_only=True,
+                                                 input_formats=(
+                                                     global_vars.DATETIME_FORMAT,),
+                                                 format=global_vars.DATETIME_FORMAT)
 
     class Meta:
         model = models.User
