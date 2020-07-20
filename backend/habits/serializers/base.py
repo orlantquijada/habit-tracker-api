@@ -14,6 +14,12 @@ class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = habits_models.Tag
         fields = ('id', 'label', 'user_id')
+        validators = (
+            serializers.UniqueTogetherValidator(
+                queryset=habits_models.Tag.objects.all(),
+                fields=('label', 'user_id')
+            ),
+        )
 
 
 class HabitSerializer(serializers.ModelSerializer,
@@ -30,6 +36,12 @@ class HabitSerializer(serializers.ModelSerializer,
 
         model = habits_models.Habit
         fields = ('id', 'title', 'allotted_time', 'user_id') + inherited_fields
+        validators = (
+            serializers.UniqueTogetherValidator(
+                queryset=habits_models.Habit.objects.all(),
+                fields=('title', 'allotted_time', 'user_id')
+            ),
+        )
 
 
 class EntrySerializer(serializers.ModelSerializer):
