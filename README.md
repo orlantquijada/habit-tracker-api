@@ -12,8 +12,8 @@
 
 1. `sudo pacman -Syu`
 2. `sudo pacman -S docker`
-3. `sudo systemctl start docker.service`
-4. `sudo systemctl enable docker.service`
+3. `sudo systemctl start docker`
+4. `sudo systemctl enable docker`
 5. `sudo pacman -S docker-compose`
 6. `sudo usermod -aG docker $USER`
 7. reboot
