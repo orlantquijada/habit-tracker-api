@@ -28,4 +28,4 @@
 
 ### Create superuser
 
-`docker exec -it backend_web_1 python manage.py migrate`
+`docker exec -it backend_web_1 python manage.py createsuperuser`
